@@ -25,3 +25,10 @@ export default function IndexPage() {
       </ColorSchemeProvider>
   );
 }
+
+export async function getServerSideProps() {
+  // Since there's no data to fetch, simply return an empty object
+  return {
+    props: {}
+  };
+}
