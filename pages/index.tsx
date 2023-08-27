@@ -1,4 +1,6 @@
 //index.tsx is the root page of the website
+
+'use client'
 import { useState } from 'react';
 import { MantineProvider, ColorSchemeProvider, ColorScheme, Text } from '@mantine/core';
 import { Header } from '../components/Header';
@@ -24,11 +26,4 @@ export default function IndexPage() {
         </MantineProvider>
       </ColorSchemeProvider>
   );
-}
-
-export async function getServerSideProps() {
-  // Since there's no data to fetch, simply return an empty object
-  return {
-    props: {}
-  };
 }

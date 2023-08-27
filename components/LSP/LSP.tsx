@@ -1,4 +1,6 @@
 // LSP.tsx
+
+'use client'
 import { useState } from 'react';
 import Input from './Input/Input';
 // import and initialize ReactGA for user tracking - Google Ananlytics
