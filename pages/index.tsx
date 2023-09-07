@@ -3,11 +3,12 @@
 'use client'
 import { useState } from 'react';
 import { MantineProvider, ColorSchemeProvider, ColorScheme, Text, Button } from '@mantine/core';
+import AppShell from '../components/AppShell'
 import Link from 'next/link'
 import AnnualLeave from './AnnualLeave';
 
 export default function IndexPage() {
-  const [colorScheme, setColorScheme] = useState<ColorScheme>('dark');
+  const [colorScheme, setColorScheme] = useState<ColorScheme>('light');
   const toggleColorScheme = (value?: ColorScheme) => setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'));
 
   return (
@@ -20,12 +21,7 @@ export default function IndexPage() {
         withNormalizeCSS
         theme={{ colorScheme }}
       >
-        <Button component="a" href="/AnnualLeave" variant="outline" >
-          Annual Leave
-        </Button>
-        <Button component="a" href="/LongServicePayment" variant="outline" >
-          LongService
-        </Button>
+        <AppShell/>
       </MantineProvider>
     </ColorSchemeProvider>
   );

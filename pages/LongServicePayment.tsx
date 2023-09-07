@@ -7,7 +7,7 @@ import { HeaderLongService } from '../components/LSP/HeaderLongService';
 import  LSP from '../components/LSP/LSP';
 
 export default function LongServicePayment() {
-  const [colorScheme, setColorScheme] = useState<ColorScheme>('dark');
+  const [colorScheme, setColorScheme] = useState<ColorScheme>('light');
   const toggleColorScheme = (value?: ColorScheme) => setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'));
 
 
