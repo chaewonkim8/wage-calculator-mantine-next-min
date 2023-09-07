@@ -1,14 +1,13 @@
-//index.tsx is the root page of the website
-
 'use client'
 import { useState } from 'react';
-import { MantineProvider, ColorSchemeProvider, ColorScheme, Text, Button } from '@mantine/core';
-import Link from 'next/link'
-import AnnualLeave from './AnnualLeave';
+import { MantineProvider, ColorSchemeProvider, ColorScheme, Text } from '@mantine/core';
+import { HeaderAnnualLeave } from '../components/AnnualLeave/HeaderAnnualLeave';
+import ContentAnnualLeave from '../components/AnnualLeave/ContentAnnualLeave';
 
-export default function IndexPage() {
+export default function AnnualLeave() {
   const [colorScheme, setColorScheme] = useState<ColorScheme>('dark');
   const toggleColorScheme = (value?: ColorScheme) => setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'));
+
 
   return (
     <ColorSchemeProvider
@@ -20,12 +19,8 @@ export default function IndexPage() {
         withNormalizeCSS
         theme={{ colorScheme }}
       >
-        <Button component="a" href="/AnnualLeave" variant="outline" >
-          Annual Leave
-        </Button>
-        <Button component="a" href="/LongServicePayment" variant="outline" >
-          LongService
-        </Button>
+        <HeaderAnnualLeave />
+        <ContentAnnualLeave />
       </MantineProvider>
     </ColorSchemeProvider>
   );
