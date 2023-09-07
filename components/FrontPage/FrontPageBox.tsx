@@ -22,8 +22,7 @@ export default function FrontPageBox() {
 
             <Box
                 p="xl"
-                m="lg"
-                mt="xl"
+                m="xs"
                 sx={(theme) => ({
                     backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.blue[0],
                     borderRadius: theme.radius.md,
@@ -37,7 +36,8 @@ export default function FrontPageBox() {
                     order = {1}
                     // size="xl"
                     // fw={700}
-                    mt="lg"
+                    mt="xs"
+                    mb="xs"
                     sx={(theme) => ({
                         color: theme.colorScheme === 'dark' ? "white" : theme.colors.blue[9],
                     })}
@@ -52,15 +52,16 @@ export default function FrontPageBox() {
                     sx={(theme) => ({
                         color: theme.colorScheme === 'dark' ? "#90D2FF" : theme.colors.blue[9],
                     })}
-                    mb="lg"
-                    mt="sm"
+                    mb="xs"
+                    mt="xs"
                 >
                     Designed to empower the migrant workers of Hong Kong
                 </Text>
                 <Image 
                     alt = "cover image"
                     src = '/images/calculator.jpg'
-                    mb = "md"
+                    mb = "xs"
+                    mt = "xs"
                     radius="md"
                     withPlaceholder
                 />
