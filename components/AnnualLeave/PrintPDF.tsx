@@ -7,30 +7,27 @@ import ReactGA from "react-ga4";
 ReactGA.initialize("G-1LE47Z6NV9");
 
 interface PrintPDFProps {
-  wage: number | '';
   yearsOfService: number;
+  annualLeaves: number;
   startDate: Date | null;
   endDate: Date | null;
 }
 
-const PrintPDF: React.FC<PrintPDFProps> = ({ wage, yearsOfService, startDate, endDate }) => {
+const PrintPDF: React.FC<PrintPDFProps> = ({ annualLeaves, yearsOfService, startDate, endDate }) => {
   const printPDF = () => {
     const doc = new jsPDF();
     const text = `
-      Total Payment = ${((Number(wage) * 2) / 3 * yearsOfService).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")} HKD
-      Years of Service = ${yearsOfService.toFixed(2)} years
+      Annual Leaves = ${annualLeaves} days
 
+      Years of Service = ${yearsOfService.toFixed(2)} years
       Start Working Date = ${startDate ? startDate.toLocaleDateString() : null}
       End Working Date = ${endDate ? endDate.toLocaleDateString() : null}
-      Monthly Wage = ${wage} HKD
-
-      Formula = ${wage} * (2/3) * ${yearsOfService.toFixed(2)}
     `;
     doc.text(text, 10, 10);
-    doc.save('Calculations.pdf');
+    doc.save('Calculations_AnnualLeaves.pdf');
      //use ReactGA to track the user event
     ReactGA.event({
-      category: "long_service_payment",
+      category: "annual_leaves",
       action: "click_save_pdf",
     });
   };

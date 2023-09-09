@@ -1,13 +1,9 @@
 import { Title, Text, Divider, Flex, Button } from "@mantine/core"
 import { ThemeToggle } from "../ThemeToggle"
 
-export function HeaderAnnualLeave() {
+export default function Header() {
     return (
         <>
-            <Button component="a" href="/" variant="outline" >
-                return home
-            </Button>
-            {/* the button above is a temporary addition for debugging purposes*/}
             <Flex
                 m="xl"
                 mb="xs"

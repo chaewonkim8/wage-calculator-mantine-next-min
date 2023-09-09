@@ -1,15 +1,22 @@
-// ResultBoxAnnualLeave.tsx
+// InputBox.tsx
 import { useState, useEffect } from 'react';
 import { Box, Text, Button } from '@mantine/core';
+import { DatePickerInput } from '@mantine/dates';
+import { IconCalendar } from '@tabler/icons-react';
 import { motion } from 'framer-motion';
+import WorkDateInput from './WorkDateInput';
 
 interface Props {
     boxType: string,
     handleToggle: () => void,
-    // handleClose: () => void,
+    startDate: Date | null,
+    setStartDate: (date: Date | null) => void,
+    endDate: Date | null,
+    setEndDate: (date: Date | null) => void,
 }
 
-export default function ResultBoxAnnualLeave({boxType, handleToggle}: Props) {
+
+export default function InputBox({ boxType, handleToggle, startDate, setStartDate, endDate, setEndDate }: Props) {
 
     return (
         <>
@@ -41,36 +48,28 @@ export default function ResultBoxAnnualLeave({boxType, handleToggle}: Props) {
                             color: theme.colorScheme === 'dark' ? theme.colors.gray[4] : theme.colors.dark[5],
                         })}
                     >
-                        This is a ResultBox
+                        Tell us your work dates
                     </Text>
 
-                    <Text
-                    align="left"
-                    size="xl"
-                    fw={700}
-                    mt="lg"
-                    sx={(theme) => ({
-                        color: theme.colorScheme === 'dark' ? "white" : theme.colors.dark[5],
-                    })}
-                >
-                    Your Annual Leaves 
-                </Text>
+                    <WorkDateInput
+                        label="Start working date"
+                        value={startDate}
+                        onChange={setStartDate} />
 
-                <Text
-                    ta="left"
-                    fz="lg"
-                    fw={700}
-                    sx={(theme) => ({
-                        color: theme.colorScheme === 'dark' ? "#90D2FF" : theme.colors.blue[6],
-                    })}
-                    mb="lg"
-                > 
-                    32 Days
-                </Text>
+                    <WorkDateInput
+                        label="End working date"
+                        value={endDate}
+                        onChange={setEndDate} />
                     <Button
+                        fullWidth
+                        m="auto"
+                        size="md"
+                        radius="md"
+                        variant="gradient"
+                        gradient={{ from: 'indigo', to: 'cyan' }}
                         onClick={handleToggle}
                     >
-                        calculate again
+                        calculate my annual leaves
                     </Button>
                 </Box>
 

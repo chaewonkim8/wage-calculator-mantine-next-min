@@ -4,10 +4,6 @@ import { ThemeToggle } from "../ThemeToggle"
 export function HeaderLongService() {
     return (
         <>
-            <Button component="a" href="/" variant="outline" >
-                return home
-            </Button>
-            {/* the button above is a temporary addition for debugging purposes*/}
             <Flex
                 m="xl"
                 mb="xs"

@@ -3,7 +3,7 @@
 'use client'
 import { useState } from 'react';
 import { MantineProvider, ColorSchemeProvider, ColorScheme, Text, Button } from '@mantine/core';
-import AppShell from '../components/AppShell'
+import FrontPage from '../components/FrontPage'
 import Link from 'next/link'
 import AnnualLeave from './AnnualLeave';
 
@@ -21,7 +21,7 @@ export default function IndexPage() {
         withNormalizeCSS
         theme={{ colorScheme }}
       >
-        <AppShell/>
+        <FrontPage/>
       </MantineProvider>
     </ColorSchemeProvider>
   );
