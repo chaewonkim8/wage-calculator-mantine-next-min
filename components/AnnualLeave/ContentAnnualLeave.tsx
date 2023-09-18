@@ -47,30 +47,81 @@ export default function ContentAnnualLeave() {
         return 0;
     };
     // Function to calculate entitled annual leaves
+    // const calculateEntitledAnnualLeaves = (yearsOfService: number): number => {
+    //     if (yearsOfService < 1) {
+    //         return 0; // No entitlement for less than 1 year of service
+    //     }
+
+    //     if (yearsOfService <= 2) {
+    //         return 7; // 7 days for the first 2 years
+    //     } else if (yearsOfService < 9) {
+    //         return 7 + (yearsOfService - 2); // 7 days for the first 2 years, plus 1 additional day for each year from year 3 to year 8
+    //     } else {
+    //         return 12; // 12 days for 9 or more years of service
+    //     }
+    // };
+
+    // Function to calculate entitled annual leaves with consideration for partial years
+
     const calculateEntitledAnnualLeaves = (yearsOfService: number): number => {
-        if (yearsOfService < 1) {
-            return 0; // No entitlement for less than 1 year of service
+        // Calculate annual leave entitlement for a full year
+        const annualLeavePerYear = (year: number) => {
+            if (year <= 2) {
+                return 7; // 7 days for the first 2 years
+            } else if (year < 9) {
+                return 8; // 8 days for years 3 to 8
+            } else {
+                return 14; // 14 days for 9 or more years
+            }
+        };
+
+        // Calculate the integer part (full years) and fractional part (partial year)
+        const fullYears = Math.floor(yearsOfService);
+        const partialYear = yearsOfService - fullYears;
+
+        // Calculate annual leave for full years
+        let entitledForFullYears = 0;
+        for (let year = 1; year <= fullYears; year++) {
+            entitledForFullYears += annualLeavePerYear(year);
         }
 
-        if (yearsOfService <= 2) {
-            return 7; // 7 days for the first 2 years
-        } else if (yearsOfService < 9) {
-            return 7 + (yearsOfService - 2); // 7 days for the first 2 years, plus 1 additional day for each year from year 3 to year 8
-        } else {
-            return 12; // 12 days for 9 or more years of service
-        }
+        // Calculate annual leave for the partial year as a fraction of a full year
+        const entitledForPartialYear = partialYear * annualLeavePerYear(fullYears + 1);
+
+        return entitledForFullYears + entitledForPartialYear;
     };
 
     // Function to calculate accumulated annual leaves
     const calculateAccumulatedAnnualLeaves = (yearsOfService: number): number => {
         let accumulatedLeaves = 0;
 
-        for (let year = 1; year <= yearsOfService; year++) {
+        // Calculate the integer part (full years) and fractional part (partial year)
+        const fullYears = Math.floor(yearsOfService);
+        const partialYear = yearsOfService - fullYears;
+
+        // Calculate annual leave for full years
+        for (let year = 1; year <= fullYears; year++) {
             accumulatedLeaves += calculateEntitledAnnualLeaves(year);
         }
 
+        // Calculate annual leave for the partial year as a fraction of a full year
+        accumulatedLeaves += partialYear * calculateEntitledAnnualLeaves(fullYears + 1);
+
         return accumulatedLeaves;
     };
+
+
+
+    // Function to calculate accumulated annual leaves
+    // const calculateAccumulatedAnnualLeaves = (yearsOfService: number): number => {
+    //     let accumulatedLeaves = 0;
+
+    //     for (let year = 1; year <= yearsOfService; year++) {
+    //         accumulatedLeaves += calculateEntitledAnnualLeaves(year);
+    //     }
+
+    //     return accumulatedLeaves;
+    // };
 
     // Source of information: https://www.labour.gov.hk/eng/faq/cap57i_whole.htm
 
@@ -82,39 +133,6 @@ export default function ContentAnnualLeave() {
             setAnnualLeaves(updatedAnnualLeaves);
         }
     }, [startDate, endDate]);
-    
-    // const calculateAnnualLeaves = (yearsOfService: number): number => {
-    //     if (yearsOfService < 1) {
-    //         return 0; // No entitlement for less than 1 year of service
-    //     }
-
-    //     let annualLeaves = 0;
-
-    //     // Calculate leaves for each year of service
-    //     for (let year = 1; year <= yearsOfService; year++) {
-    //         if (year <= 2) {
-    //             annualLeaves += 7; // 7 days for the first 2 years
-    //         } else if (year < 9) {
-    //             annualLeaves += 1; // 1 additional day for each year from year 3 to year 8
-    //         } else {
-    //             annualLeaves += 0; // No additional leave for more than 8 years
-    //         }
-    //     }
-
-    //     return annualLeaves;
-    // };
-
-
-    // // Source of information: https://www.labour.gov.hk/eng/faq/cap57i_whole.htm
-
-    // useEffect(() => {
-    //     if (startDate && endDate) {
-    //         const updatedYearsOfService = calculateYearsOfService(startDate, endDate);
-    //         const updatedAnnualLeaves = calculateAnnualLeaves(updatedYearsOfService);
-    //         setYearsOfService(updatedYearsOfService);
-    //         setAnnualLeaves(updatedAnnualLeaves);
-    //     }
-    // }, [startDate, endDate]);
 
     return (
         <>

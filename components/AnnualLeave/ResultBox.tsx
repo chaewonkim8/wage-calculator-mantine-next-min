@@ -57,7 +57,7 @@ export default function ResultBox({ boxType, handleToggle, annualLeaves, yearsOf
                         })}
                         mb="lg"
                     >
-                        {annualLeaves} Days
+                        {(annualLeaves).toFixed(1)} Days
                     </Text>
                     <Divider
                         my="lg"
